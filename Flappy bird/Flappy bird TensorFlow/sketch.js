@@ -1,7 +1,7 @@
 var Canvass;
 
 
-const TOTAL  = 500;
+const TOTAL  = 200;
 var birds = [];
 var savedBirds = [];
 var pipes = [];
@@ -16,6 +16,7 @@ let slider;
 
 function setup() {
     Cannvass = createCanvas(600,400);
+    tf.setBackend('cpu');
     background(51);
     slider = createSlider(1,100,1);
     for (var i=0; i < TOTAL; i++){
@@ -128,16 +129,20 @@ class Bird{
         }
 
         let inputs = []
-        inputs[0] = this.y / height;
-        inputs[1] = closest.top / height;
-        inputs[2] = closest.bottom / height;
-        inputs[3] = closest.x / width;
+        inputs[0] = this.y / height  ;
+        inputs[1] = closest.top / height ;
+        inputs[2] = closest.bottom / height ;
+        inputs[3] = closest.x / width ;
         inputs[4] = this.v / 20 ;
 
         let output = this.brain.predict(inputs);
         if(output[0] > output[1]) this.up()
     }
 
+
+    dispose(){
+        this.brain.dispose();
+    }
 
 
     update() {
@@ -199,8 +204,8 @@ function Pipe() {
     this.show = function(){
         fill(this.col);
         if (this.highlight) fill(this.colH);
-        rect(this.x,0,this.w,this.top);
-        rect(this.x,height - this.bottom,this.w,this.bottom);
+        rect(this.x,0,this.w,this.top  );
+        rect(this.x,height - this.bottom , this.w,this.bottom );
     }
 
     this.update = function() {

@@ -2,11 +2,11 @@ var Canvass;
 
 var ctr;
 var rad = 80;
-var npts = 10;
+var npts = 1000;
 var Z0 = 0
 var L;
 var nrings = 20;
-var wiggelParam = 50;
+var wiggelParam = 0.005;
 
 
 // Colors

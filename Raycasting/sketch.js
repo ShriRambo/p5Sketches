@@ -1,18 +1,18 @@
 var Canvass;
 
-
-function preload() {
-
-}
+let b;
 
 function setup() {
-    Cannvass = createCanvas(400,420);
+    Cannvass = createCanvas(400,400);
     background(51);
+
+    b = new Boundary(200,200, 300,300);
+    b.show();
     
 }
 
 function draw() {
-
+    
 }
 
 

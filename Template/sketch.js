@@ -24,9 +24,5 @@ function keyPressed() {
     }
 }
 
-function save() {
-    name = 'Sketch'
-    saveCanvas(Canvass,name,'jpg');
-}
 
 

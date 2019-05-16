@@ -28,13 +28,13 @@ function draw() {
     orb.updateScene();
     //orb.update(mouseX,mouseY);
 
-    if(keyIsDown(LEFT_ARROW)){
+    if(keyIsDown(65)){ //a
         orb.rotateCamera(-1);
-    }else if(keyIsDown(RIGHT_ARROW)){
+    }else if(keyIsDown(68)){ //d
         orb.rotateCamera(1);
-    }else if(keyIsDown(UP_ARROW)){
+    }else if(keyIsDown(87)){//w
         orb.move(1);
-    }else if(keyIsDown(DOWN_ARROW)){
+    }else if(keyIsDown(83)){ //s
         orb.move(-1);
     }
     

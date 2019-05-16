@@ -40,9 +40,12 @@ class Orb {
         this.pos = createVector(width/2 ,height/4 );
         this.rays = [];
         this.Nrays = 400;
-        this.omin = -PI/3;
-        this.omax =  PI/3;
+        this.omin = -PI/6;
+        this.omax =  PI/6;
         this.dir = p5.Vector.fromAngle(0,2);
+        this.pRatio = 50000; // Ratio for scaling wall height.
+        this.bRatio = 5000000; // Ratio for scaling brightness.
+        //this.hRatio = 0.0; // Height of orb compared to the room height.
         
         // Adding all rays irrespective of boundaries
         
@@ -138,9 +141,27 @@ class Orb {
     move(d){
         this.update(this.pos.x + d*this.dir.x,this.pos.y+d*this.dir.y)
     }
+
+
+    drawFloorCeil(){
+        push();
+        noStroke();
+        rectMode(CENTER)
+        translate(width/2, 3*height/4);
+        colorMode(HSB, 360,100,100);
+        //let ht = height/2
+        let nr = 50
+        for (let i = 0; i < nr ; i++ ){
+            fill(360,100, 50+25*(1- i/nr));
+            rect(0,0,width, (1 - (i/nr)**2 )*height/2);
+        }
+        pop();
+        
+    }
     
 
     updateScene(){
+        this.drawFloorCeil();
         let dists = [] 
         for (let ray of this.orays) {
             let dp = abs(this.dir.dot(ray.dir));
@@ -148,18 +169,18 @@ class Orb {
             dists.push((ray.mag*dp));
         }
         var nRect = dists.length;
-        var w = width/nRect
-        var dmax = sqrt(width**2 + (height**2)/4);
+        var w = width/nRect;
         push();
             
             noStroke();
             rectMode(CENTER)
             for (var i = 0; i < nRect;i++){
-                var b = map(dists[i]**2,0,dmax**2,255,51);
-                var h = max(0,map(dists[i],0,dmax,height/2,0));
+                var b =  min(51 + 5000000/(dists[i]**2),255);
+                var h =  min(this.pRatio / dists[i],height/2);  //max(0,map(dists[i],0,dmax,height/2,0));
+                //var dh = h*this.hRatio/2
                 //console.log(h);
                 fill(b);
-                rect(i*w+w/2,3*height/4,w+1,h);
+                rect(i*w+w/2,3*height/4 ,w+1,h);
             }
         pop();
 

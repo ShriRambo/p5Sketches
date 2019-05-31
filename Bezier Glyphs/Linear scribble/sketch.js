@@ -14,15 +14,16 @@ function preload() {
 
 function setup() {
     Cannvass = createCanvas(400,400);
-    background('#F8F8F8');
+    background(255);
     
     npts = nCurves*2  + 2;
 
    
 
     // Adding first curve i.e. first 4 points
-    for(let i = 0; i < npts; i++){
-        let v = p5.Vector.fromAngle(theta, R + randomGaussian(40,20));
+    pts.push(createVector(random(0,width),random(0,height)))
+    for(let i = 0; i < npts-1; i++){
+        let v = getValidPoint(pts[i]);
         pts.push(v)
         theta += 3/TWO_PI;
     }
@@ -36,7 +37,7 @@ function setup() {
     strokeWeight(2);
     strokeWeight(2);
     noFill();
-    translate(width/2,height/2);
+    //translate(width/2,height/2);
 
     drawCurve2();
 
@@ -44,24 +45,41 @@ function setup() {
 }
 
 
+function getValidPoint(v){
+
+    
+    let flag = true;
+    let foo = 0;
+    let X; 
+    let Y;
+    while(flag & foo < 100){
+        X = v.x + randomGaussian(0,60);
+        Y = v.y + randomGaussian(0,60); 
+        if((X > 10) & (X < width - 10) & (Y > 10) & (Y < height - 10) ) flag = false;
+        foo++;
+    }
+
+    return createVector(X,Y)
+}
+
+
 
 function draw() {
 
-    background(255);
+    background(255,150);
     push();
 
         stroke(51);
         strokeWeight(2);
         noFill();
-        translate(width/2,height/2);
+        //translate(width/2,height/2);
         drawCurve2();
         
         // Removing and adding 2 points.
         for(let k = 0; k < 2; k++){
             pts.shift();
-            let v = p5.Vector.fromAngle(theta, R + randomGaussian(40,20));
+            let v = getValidPoint(pts[pts.length - 1]);
             pts.push(v)
-            theta += 3/TWO_PI;
         }
         
 
@@ -91,6 +109,7 @@ function drawCurve2(){
 
     
     // Drawing continuous bezier curves with shape
+    //console.log('Drawing curve')
     beginShape();
         vertex(
             0.5 * (pts[0].x +pts[1].x), 0.5 * (pts[0].y +pts[1].y),

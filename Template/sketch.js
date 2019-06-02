@@ -6,7 +6,7 @@ function preload() {
 }
 
 function setup() {
-    Cannvass = createCanvas(400,420);
+    Canvass = createCanvas(400,420);
     background(51);
     
 }

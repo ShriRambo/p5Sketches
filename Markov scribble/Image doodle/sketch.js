@@ -19,7 +19,7 @@ function setup() {
     //frameRate(20);
    
 
-    processImg();
+    processImg2();
 
     for(let i = 0; i < nScribbles; i++){
         scribbles[i] = new Scribble(lkMat);
@@ -44,6 +44,28 @@ function processImg(){
             let chId = pxId*4;
             let val = 2;
             if (img.pixels[chId + 3] > 200 ) val = 255.1 -  (img.pixels[chId] + img.pixels[chId + 1] + img.pixels[chId + 2])/3;
+            col[y] = val;
+
+        }
+        row[x] = col
+    }
+
+    lkMat = row;
+
+}
+
+
+
+function processImg(){
+
+    img.loadPixels();
+    let row = []
+    for(let x = 0; x < width; x++){
+        let col = []
+        for (let y = 0; y < height; y++){
+            let pxId = width*y + x;
+            let chId = pxId*4;
+            let val = 2;
             col[y] = val;
 
         }

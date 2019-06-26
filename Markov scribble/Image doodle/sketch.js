@@ -8,7 +8,7 @@ let dr = true;
 let img;
 
 function preload() {
-    img = loadImage('./batman.png');
+    img = loadImage('./rose2.jpg');
    
 }
 
@@ -19,7 +19,7 @@ function setup() {
     //frameRate(20);
    
 
-    processImg2();
+    processImg();
 
     for(let i = 0; i < nScribbles; i++){
         scribbles[i] = new Scribble(lkMat);
@@ -56,7 +56,7 @@ function processImg(){
 
 
 
-function processImg(){
+function processImg2(){
 
     img.loadPixels();
     let row = []

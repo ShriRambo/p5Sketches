@@ -7,6 +7,7 @@ let orb;
 
 function setup() {
     Canvass = createCanvas(840,360*2);
+    Canvass.position(window.innerWidth / 2 - width / 2, window.innerHeight / 2 - height / 2);
     background(51);
 
     initBiundaries();

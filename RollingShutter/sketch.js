@@ -14,6 +14,8 @@ video.size(320,240);
 
 noLoop();
 
+getFrames();
+
 
 }
 

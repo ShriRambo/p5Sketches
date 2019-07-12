@@ -21,6 +21,7 @@ var currentFace;
 function setup() {
     Cannvass = createCanvas(800,600);
     background(51);
+    frameRate(4);
 
     dx = width / nx;
     dy = height / ny;

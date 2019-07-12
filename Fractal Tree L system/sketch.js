@@ -10,7 +10,7 @@
 // axiom X
 // 1 a: "F", b: "FF"
 // 2 a: "X",  b: "F+[[X]-X]-F[-FX]+X" b: "F+[[X]-X]-F[+FX]+X"  b: "F+[[X]-X]-F[-FX]+FX"
-// 2 
+// 2  a: "X",  b: "F+[[+X]+X]-F[-F-X]+X"
 
 var Cannvass;
 var len = 100;
@@ -29,7 +29,7 @@ rules[0] = {
 }
 rules[1] = { 
     a: "X",
-    b: "F+[[+X]+X]-F[-F-X]+X" 
+    b: "F+[[+X]-X-F]-F[-FX]+F+FX"
 }
 
 /*

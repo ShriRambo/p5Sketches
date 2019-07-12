@@ -1,7 +1,7 @@
 var Canvass;
 
-const nx = 4*2;
-const ny = 3*2;
+const nx = 7;
+const ny = 3;
 
 let dx ;
 let dy;
@@ -19,9 +19,8 @@ var currentFace;
 
 
 function setup() {
-    Cannvass = createCanvas(800,600);
+    Cannvass = createCanvas(840,360);
     background(51);
-    frameRate(4);
 
     dx = width / nx;
     dy = height / ny;

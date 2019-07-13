@@ -7,7 +7,9 @@ var dxy = 20;
 var scribble
 var game
 
-
+// #######################################################################
+// #################   P5.JS SKETCH   ####################################
+// #######################################################################
 function setup() {
     Canvass = createCanvas((nx+2)*dxy,(ny+2)*dxy);
     Canvass.position(window.innerWidth/2 - width/2, window.innerHeight/2 - height/2)
@@ -43,100 +45,8 @@ function keyPressed() {
 
 
 // #######################################################################
-// #################   Snake class    ####################################
+// #################   Food class    ####################################
 // #######################################################################
-class Snake {
-
-    constructor() {
-
-        let x0 = dxy * (3.5 + floor(random(0, nx - 2)));
-        let y0 = dxy * (3.5 + floor(random(0, nx - 2)));
-        this.body = [{
-                x: x0,
-                y: y0
-            },
-            {
-                x: x0 - dxy,
-                y: y0
-            }
-        ];
-
-        this.dir = {
-            x: 1,
-            y: 0
-        };
-
-        this.fCol = '#e0267d'
-        this.bcol = '#8FABA6'
-
-    }
-
-    show() {
-        rectMode(CENTER)
-        strokeWeight(2);
-
-        stroke(this.fCol);
-        this.drawScribbleRect(this.body[0])
-        stroke(this.bcol);
-        for (let b of this.body.slice(1)) {
-            this.drawScribbleRect(b)
-        }
-    }
-
-    drawScribbleRect(b, col) {
-        // calculate the x and y coordinates for the border points of the hachure
-        var xleft = b.x - dxy / 2;
-        var xright = b.x + dxy / 2;
-        var ytop = b.y - dxy / 2;
-        var ybottom = b.y + dxy / 2;
-
-        // the x coordinates of the border points of the hachure
-        var xCoords = [xleft, xright, xright, xleft];
-        // the y coordinates of the border points of the hachure
-        var yCoords = [ytop, ytop, ybottom, ybottom];
-        // the gap between two hachure lines
-        var gap = 3.5;
-        // the angle of the hachure in degrees
-        var angle = 315;
-
-        // fill the rect with a hachure
-        scribble.scribbleFilling(xCoords, yCoords, gap, angle);
-    }
-
-    update(gotFood) {
-
-        let sd = {}
-        let x = this.body[0].x + this.dir.x * dxy;
-        let y = this.body[0].y + this.dir.y * dxy;
-
-        if (x > width - dxy) return true //x = 3*dxy/2;
-        if (x < dxy) return true //x = width - 3*dxy/2;
-        if (y > height - dxy) return true //y = 3*dxy/2;
-        if (y < dxy) return true //y = height - 3*dxy/2;
-
-        sd.x = x;
-        sd.y = y;
-
-        this.body.unshift(sd);
-        if (!gotFood) this.body.pop();
-
-        return false;
-    }
-
-
-    hitSelf() {
-        let head = this.body[0];
-
-        for (let b of this.body.slice(1)) {
-            if (b.x == head.x && b.y == head.y) return true;
-        }
-        return false;
-    }
-}
-
-
-
-// Food class
 class Food {
 
     constructor(snake) {
@@ -203,7 +113,10 @@ class Food {
 }
 
 
-// GameBoard class
+
+// #######################################################################
+// ################   GameBoard class    #################################
+// #######################################################################
 class GameBoard {
 
     constructor(nx, ny) {

@@ -57,7 +57,7 @@ function draw() {
     //         break;
     //     }
     // }
-
+  
     if(dispGame) games[0].show()
     
     if(genOver) genIsOver();

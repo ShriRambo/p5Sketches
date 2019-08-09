@@ -6,6 +6,16 @@
 
     [ ] Minesweeper + AI
 
+    [ ] Maps generative art
+
+    [ ] Maps api + generative coloring watercolor style
+
+    [ ] Spiral art [ref](wo ek sketch banaya tha)
+
+    [ ] Ambient salamander [ref](https://twitter.com/TheRujiK)
+
+    [ ] Ambient butterflies. May be pixelated. May be randomly generated.
+
 
 ## New stuff to checkout
     [] Bezier vertex for smooth continuous curves.

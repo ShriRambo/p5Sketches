@@ -26,8 +26,10 @@ let dx
 // "#fff700" Lemon
 // "#808000" Olive
 
+// First palette
 // ["#96CDBF", "#FED880", "#FF674D", "#3E9EB7", "#96CDBF", "#FED880", "#FF674D", "#3E9EB7", "#3f3f3f"]
 
+// Oil paint colors
 // [ "#282422",  "#4166f5", "#2a52be", "#8a3324", "#e32636", "#e30022", "#e97451", "#635147", "#cc7722", "#fff700", "#808000"]
 
 // Some palette on internet
@@ -40,8 +42,7 @@ let dx
 // ["#B30000", "#1F42DA", "#F8C43C", 0]
 
 
-let ranga = ["#660b15", "#ab1323", "#ffffff", "#1c1c1c"]
-
+let ranga = ["#96CDBF", "#FED880", "#FF674D", "#3E9EB7", "#96CDBF", "#FED880", "#FF674D", "#3E9EB7", "#3f3f3f"]
 
 
 

@@ -34,6 +34,7 @@ function createBasicShape(){
         hexagon.push({ x: vec.x + width / 2, y: vec.y + height / 2 })
         vec.rotate(PI / 3);
     }
+    for(let i = 0; i < 4; i++) hexagon = getNewShape(hexagon);
 }
 
 function drawBlob(){

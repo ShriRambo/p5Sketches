@@ -10,7 +10,7 @@
 var Canvass;
 var img 
 var dimg
-var wt = 0.1
+var wt = 0.01
 var pdist = 100
 
 var slider1
@@ -19,6 +19,42 @@ var slider1
 function preload() {
 
     img=loadImage('img1.jpg')
+
+    // createGraphicsImageThing()
+
+}
+
+function createGraphicsImageThing(){
+
+    // Verticle lines
+    // {
+    //     img = createGraphics(800,800);
+    //     let nlin = 50;
+    //     let dw = img.width/nlin;
+
+    //     img.fill("#000000");
+    //     img.background("#F20028");
+    //     img.noStroke();
+
+    //     for (let i = 0; i < nlin; i++){
+    //         img.rect(i*dw,0,0.5*dw, img.height);
+    //     }
+    // }
+
+    // {
+    //     img = createGraphics(800, 800);
+    //     let nlin = 10;
+    //     let dw = img.width / nlin;
+
+    //     img.stroke("#03A6ED");
+    //     img.strokeWeight(1)
+    //     img.background("#FEF201");
+    //     img.noFill();
+
+    //     for (let i = 0; i < nlin; i++) {
+    //         img.ellipse(img.width/2, img.height/2,width-i*dw);
+    //     }
+    // }
 
 }
 
@@ -76,6 +112,7 @@ function keyPressed() {
     if(keyCode == DELETE){
         console.log('Animation Stopped');
         noLoop();
+        save(Canvass,"sketch")
     }
     if(keyCode == ENTER){
         drawIT();
@@ -87,7 +124,7 @@ function distortMap(x,y){
 
     let x_ = x + int(  pdist*(   2*noise(x*wt,y*wt,100) - 1 )  )
     x_ = max(0,min(width-1,x_));
-    let y_ = y //+ int(  pdist*(   2*noise(x*wt,y*wt,10000) - 1 )  )
+    let y_ = y + int(  pdist*(   2*noise(x*wt,y*wt,10000) - 1 )  )
     y_ = max(0,min(height-1,y_));
 
     return [x_,y_]

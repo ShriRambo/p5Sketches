@@ -90,6 +90,12 @@ class Kite{
         this.createClouds();
         this.cldSpeed = createVector(0,1);
         this.cldForce = createVector(0,1);
+
+        // Colors
+        let cols = ["#1A1333", "#262949", "#045459", "#0D7355", "#15C286", "#ABD96D", "#FBBF54", "#EE6B3B", "#EC0F47", "#A02C5D", "#700460", "#022C7A", "#96CDBF", "#FED880", "#FF674D", "#3E9EB7", ]
+        this.c1 = random(cols);
+        this.c2 = random(cols);
+
     }
 
     createClouds(){
@@ -127,7 +133,7 @@ class Kite{
     flutterTail(){
 
         for(let i = 0; i < this.tail.length; i++){
-            this.tail[i].x = this.tailBase[i].x + 30 * (2 * noise(100 + 100*this.tailBase[i].x, 100*this.tailBase[i].y, 0.01*frameCount) - 1);
+            this.tail[i].x = this.tailBase[i].x + 30* ( (i+1)/this.tail.length ) * cos(i + 0.1  * frameCount) // (2 * noise(100 + 100*this.tailBase[i].x, 100*this.tailBase[i].y, 0.01*frameCount) - 1);
             this.tail[i].y = this.tailBase[i].y + 10 * (2 * noise(200 + 100*this.tailBase[i].x, 200*this.tailBase[i].y, 0.01*frameCount) - 1);
         }
         // Centering first control point
@@ -241,34 +247,49 @@ class Kite{
 
         push()
 
+        // Computing kite coordinates
+        
+        // Front
+        let v = p5.Vector.mult(this.dir, f).rotate(this.yaw + this.yawNoise);
+        let cTop = createVector(v.x, v.y);
+        
+        // Right
+        v.rotate(HALF_PI);
+        v.setMag(lr);
+        let cRight = createVector(v.x, v.y);
+
+        // Back
+        v.rotate(HALF_PI);
+        v.setMag(b);
+        let cBack = createVector(v.x, v.y);
+
+         // Left
+         v.rotate(HALF_PI);
+         v.setMag(lr);
+         let cLeft = createVector(v.x, v.y);
+
+        translate(this.pos.x, this.pos.y);
+
+        push()
+        noStroke();
+        fill(this.c1)
+        triangle(cLeft.x,cLeft.y, cTop.x,cTop.y,cRight.x,cRight.y);
+        fill(this.c2)
+        triangle(cLeft.x, cLeft.y, cBack.x, cBack.y, cRight.x, cRight.y);
+        pop()
+
 
         noFill();
         stroke(51);
         strokeWeight(4);
-        translate(this.pos.x,this.pos.y);
+       
 
+        // Kite sticke
         beginShape();
-
-        // Front
-        let v = p5.Vector.mult(this.dir,f).rotate(this.yaw + this.yawNoise);       
-        let cTop = createVector(v.x,v.y);
-        vertex(v.x, v.y);
-
-        // Right
-        v.rotate(HALF_PI); v.setMag(lr);
-        let cRight = createVector(v.x, v.y);
-        vertex(v.x,  v.y);
-
-        // Back
-        v.rotate(HALF_PI); v.setMag(b);
-        let cBack = createVector(v.x, v.y);
-        vertex(+ v.x, v.y);
-
-        // Left
-        v.rotate(HALF_PI); v.setMag(lr);
-        let cLeft = createVector(v.x, v.y);
-        vertex( v.x, v.y);
-
+            vertex(cTop.x, cTop.y);
+            vertex(cRight.x,  cRight.y);
+            vertex(cBack.x, cBack.y);
+            vertex(cLeft.x, cLeft.y);
         endShape(CLOSE);
 
         // Crossing lines
@@ -291,21 +312,21 @@ class Kite{
     }
 
     drawTail(){
-        // for(let i =0; i< this.ncurves;i++){
-        //     let id = i*2;
+        for(let i =0; i< this.ncurves;i++){
+            let id = i*2;
 
-        //     // ellipse(0.5 * (this.tail[id].x + this.tail[id + 1].x), 0.5 * (this.tail[id].y + this.tail[id + 1].y),20);
-        //     // ellipse(this.tail[id + 1].x, this.tail[id + 1].y, 20);
-        //     // ellipse(this.tail[id + 2].x, this.tail[id + 2].y, 20);
-        //     // ellipse(0.5 * (this.tail[id + 2].x + this.tail[id + 3].x), 0.5 * (this.tail[id + 2].y + this.tail[id + 3].y), 20)
+            // ellipse(0.5 * (this.tail[id].x + this.tail[id + 1].x), 0.5 * (this.tail[id].y + this.tail[id + 1].y),20);
+            // ellipse(this.tail[id + 1].x, this.tail[id + 1].y, 20);
+            // ellipse(this.tail[id + 2].x, this.tail[id + 2].y, 20);
+            // ellipse(0.5 * (this.tail[id + 2].x + this.tail[id + 3].x), 0.5 * (this.tail[id + 2].y + this.tail[id + 3].y), 20)
 
-        //     bezier(
-        //         0.5 * (this.tail[id].x + this.tail[id + 1].x), 0.5 * (this.tail[id].y + this.tail[id + 1].y),
-        //         this.tail[id + 1].x, this.tail[id + 1].y,
-        //         this.tail[id + 2].x, this.tail[id + 2].y,
-        //         0.5 * (this.tail[id + 2].x + this.tail[id + 3].x), 0.5 * (this.tail[id + 2].y + this.tail[id + 3].y)
-        //     )
-        // }
+            bezier(
+                0.5 * (this.tail[id].x + this.tail[id + 1].x), 0.5 * (this.tail[id].y + this.tail[id + 1].y),
+                this.tail[id + 1].x, this.tail[id + 1].y,
+                this.tail[id + 2].x, this.tail[id + 2].y,
+                0.5 * (this.tail[id + 2].x + this.tail[id + 3].x), 0.5 * (this.tail[id + 2].y + this.tail[id + 3].y)
+            )
+        }
 
         let ve = createVector(0,-20);
 

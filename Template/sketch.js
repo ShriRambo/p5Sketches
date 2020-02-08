@@ -8,6 +8,8 @@
 
 
 var Canvass;
+var capturer
+// var rendering = false;
 
 
 function preload() {
@@ -17,14 +19,24 @@ function preload() {
 function setup() {
     Canvass = createCanvas(400,420);
     background(51);
+    // setupRenderer()
     noLoop();
     
 }
 
 function draw() {
 
+    // if (rendering) capturer.capture(document.getElementById('defaultCanvas0'));
+
 }
 
+function setupRenderer() {
+    capturer = new CCapture({ format: 'webm', framerate: frameRate() });
+    capturer.start();
+    
+
+    rendering = true
+}
 
 function keyPressed() {
     

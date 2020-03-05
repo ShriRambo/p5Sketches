@@ -19,7 +19,7 @@ var bgcol = 20
 function setup() {
     Canvass = createCanvas(800,800);
     background(bgcol);
-    setupRenderer()
+    // setupRenderer()
     for(let i = 0; i <nwalkers; i++) walkers[i] = new IsoWalker()
     // noLoop();
     
@@ -49,7 +49,7 @@ function keyPressed() {
     
     if(keyCode == DELETE){
         console.log('Animation Stopped');
-        if(rendering) 
+        
         noLoop();
     }
     if ((keyCode == ESCAPE) & rendering) {

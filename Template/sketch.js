@@ -44,6 +44,13 @@ function keyPressed() {
         console.log('Animation Stopped');
         noLoop();
     }
+    if ((keyCode == ESCAPE) & rendering) {
+
+        // save(Canvass, "sketch.jpg")
+        capturer.stop()
+        capturer.save()
+
+    }
 }
 
 

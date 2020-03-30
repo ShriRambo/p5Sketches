@@ -9,7 +9,13 @@
     [ ] Phonetic/Color to Color/Phonetic translator
         [ ] Using that to create artworks from poems like lines on black background that looks like text
 
-    [ ] Kite runner: a sumulation of randolmy running kites
+    [x] Kite runner: a sumulation of randolmy running kites
+
+    [x] Rorschach patterns
+
+    [ ] Rorschach patterns, hexagonal symmetry
+
+    [ ] Metaballs multiple colors 
 
 
 ## New stuff to checkout

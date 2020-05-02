@@ -26,3 +26,14 @@
     [] Color scribble with markov chain monte carlo
 
     [] Convert images to boundaries to draw scribble art.
+
+
+##### The best Instagram video format is MP4. Your video file should include these technical specifications:
+
+H.264 codec
+AAC audio
+3500 kbps bitrate
+Frame rate of 30 fps (frames per second)
+Video can be a maximum of 60 seconds
+Maximum video width is 1080 px (pixels) wide
+Videos should be 920 pixels tall

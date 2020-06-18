@@ -1,0 +1,46 @@
+{
+    "template": [
+        "ITLISASAMPM",
+        "ACQUARTERDC",
+        "TWENTYFIVEX",
+        "HALFSTENFTO",
+        "PASTERUNINE",
+        "ONESIXTHREE", 
+        "FOURFIVETWO", 
+        "EIGHTELEVEN", 
+        "SEVENTWELVE", 
+        "TENSEOCLOCK"],
+
+    "standards":{
+        "it":[0,0,1],
+        "is":[0,3,4],
+        "am":[0,7,8],
+        "pm":[0,9,10],
+        "oclock":[9,5,10],
+        "to":[3,9,10],
+        "past":[4,0,3]},
+
+    "hours":{
+        "one":[5,0,2],
+        "two":[6,8,10], 
+        "three":[5,6,10], 
+        "four":[6,0,3],
+        "five":[6,4,7],
+        "six":[5,3,5],
+        "seven":[8,0,4],
+        "eight":[7,0,4],
+        "nine":[4,7,10],
+        "ten":[9,0,2],
+        "eleven":[7,5,10],
+        "twelve":[8,5,10]},
+
+    "minutes":{
+        "five":[2,6,9],
+        "ten":[3,5,7],
+        "quarter":[1,2,8],
+        "twenty":[2,0,5],
+        "twentyfive":[2,0,9],
+        "half":[3,0,3]}
+    }
+
+

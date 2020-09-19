@@ -11,6 +11,11 @@ var Canvass;
 var capturer
 // var rendering = false;
 
+var cpickFn
+
+var palette =  ["#f3d6e9" , "#fdaf2c", "#ff483e", "#e705be", "#03a4ff"]
+
+
 
 function preload() {
 
@@ -18,21 +23,38 @@ function preload() {
 
 function setup() {
     Canvass = createCanvas(windowWidth,windowHeight);
-    // background(51);
+    background(255);
     // setupRenderer()
     // noLoop();
     
-    f = 0
+    aStroke = 0
+
+    // Chroma.js params
+    cpickFn = chroma.scale(palette);
+
+    // Brush Physics parameters
     k = 0.1
     vx = vy = 0
     fric = 0.8
-    r0 = 25
-    ro = 0
-
-    nsteps = 30
     
-    d1 = 8*noise(0,1)
-    d2 = -5*noise(1,0)
+    nsteps = 60
+
+    // Brush param
+    nbr = 5
+    d = []
+    w = []
+    r0 = 60
+    ro = 0
+    for(let i = 0; i < nbr; i++){
+        d[i] = random(-r0*0.1,r0*0.1)
+        w[i] = random(0,1.5)
+    }
+    
+    
+
+    col =  100 
+
+    counterr = 0
 
     radMult = 0.3 + noise(99,0)
     
@@ -41,13 +63,13 @@ function setup() {
 function draw() {
 
     // if (rendering) capturer.capture(document.getElementById('defaultCanvas0'));
-    // background(243,10)
+    // background(255,10 + 5*noise(frameCount))
     
     if(mouseIsPressed) {
         mx = mouseX
         my = mouseY
-        if (!f){
-            f = 1
+        if (!aStroke){
+            aStroke = 1
             x = mx;
             y = my;
         }
@@ -73,14 +95,17 @@ function draw() {
             y += vy/nsteps;
             
             rs = ro + (rn - ro)*i/nsteps
-            strokeWeight(rs);
-            line(xo, yo, x,y);
+            
+            // col = 50 - 50*noise(32, 0.01*counterr )
+            for(let j = 0; j < nbr; j++){
+                let dd =  d[j] + 4*noise(j, 0.01*counterr) - 2;
+                strokeWeight(rs*w[j]);
+                col = pickCol(  noise(j, d[j], counterr*0.001)  )
+                stroke(col);
+                line(xo + dd, yo + dd, x + dd, y + dd);
+            }
 
-            strokeWeight(rs*1.2);
-            line(xo + d1, yo + d1, x + d1, y + d1);
-
-            strokeWeight(rs*0.7);
-            line(xo + d2, yo + d2 , x + d2, y + d2);
+            counterr -=- 1;
         }
         ro = rn
 
@@ -94,9 +119,9 @@ function draw() {
 
         radMult = 0.3 + noise(99,frameCount*0.001)
       
-    } else if(f) {
-      f = 0
-      vx = vy = f = ro =0
+    } else if(aStroke) {
+      aStroke = 0
+      vx = vy = aStroke = ro =0
     }
 
 
@@ -115,6 +140,7 @@ function keyPressed() {
     if(keyCode == DELETE){
         console.log('Animation Stopped');
         noLoop();
+        saveCanvas(Canvass, "sketch.jpg")
     }
     if ((keyCode == ESCAPE) & rendering) {
 
@@ -126,4 +152,14 @@ function keyPressed() {
 }
 
 
+function pickCol(x) {
+
+    // let hu = 360 * (1 + sin(x)) / 2
+    // x = noise(x)
+    let chs = cpickFn(x)
+    return chs.hex()  //color(chs[0],chs[1],chs[2]);
+    
+    // return color(hu, 150, 255)
+
+}
 

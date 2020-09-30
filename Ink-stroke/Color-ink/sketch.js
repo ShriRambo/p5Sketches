@@ -15,6 +15,8 @@ var cpickFn
 
 var palette =  ["#f3d6e9" , "#fdaf2c", "#ff483e", "#e705be", "#03a4ff"]
 
+var gx 
+var gy
 
 
 function preload() {
@@ -56,7 +58,11 @@ function setup() {
 
     counterr = 0
 
-    radMult = 0.3 + noise(99,0)
+
+    radMult = 0.3 //+ noise(99,0)
+
+    gx = width*noise(21, 0)
+    gy = 0.5*height*noise(0, 45)
     
 }
 
@@ -66,8 +72,8 @@ function draw() {
     // background(255,10 + 5*noise(frameCount))
     
     if(mouseIsPressed) {
-        mx = mouseX
-        my = mouseY
+        mx = gx //mouseX
+        my = gy //mouseY
         if (!aStroke){
             aStroke = 1
             x = mx;
@@ -101,7 +107,7 @@ function draw() {
                 let dd =  d[j] + 4*noise(j, 0.01*counterr) - 2;
                 strokeWeight(rs*w[j]);
                 col = pickCol(  noise(j, d[j], counterr*0.001)  )
-                stroke(col);
+                stroke(0);
                 line(xo + dd, yo + dd, x + dd, y + dd);
             }
 
@@ -114,8 +120,8 @@ function draw() {
         // stroke(0)
         // ellipse(x,y, 20)
 
-        d1 = 8*noise(frameCount*0.001,1)
-        d2 = -5*noise(1,frameCount*0.001)
+        // d1 = 8*noise(frameCount*0.001,1)
+        // d2 = -5*noise(1,frameCount*0.001)
 
         radMult = 0.3 + noise(99,frameCount*0.001)
       
@@ -123,6 +129,10 @@ function draw() {
       aStroke = 0
       vx = vy = aStroke = ro =0
     }
+
+    
+    gx = width*noise(21, frameCount*0.1)
+    gy = 0.5*height*noise(frameCount*0.1, 45)
 
 
 

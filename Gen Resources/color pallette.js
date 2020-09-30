@@ -1,0 +1,7 @@
+neon_pink =  ["#f3d6e9" , "#fdaf2c", "#ff483e", "#e705be", "#03a4ff"]
+lemon =      ["#D19402", "#FFE245", "#FFEAA4", "#80A300", "#2D3F01"]
+something1 = ["#6CC2BD", "#5A819E", "#5A819E", "#F67E7D", "#FABFA6",  "#FFEAD0" ]
+gold =       ['#b39700','#ccac00','#e6c200','#ffd700','#ffdb1a','#ffdf33','#ffe34d']
+something2 = ["#FB6435", "#fd2bff", "#c202d3", "#5e0fff", "#1905d9"]
+darkRed =    ["#390200", "#65052b", "#c52a53", "#dc7575", "#f7d7d3"]
+fireFlower = ["#F7E489", "#F2AE2E", "#F28F38", "#DB533D", "#D94141"]
